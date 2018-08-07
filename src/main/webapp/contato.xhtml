@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/templates/layout.xhtml"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">  
+<h:head>
+    <meta charset="UTF-8"></meta>
+    <title>Cadastro de Contato</title>
+</h:head>
+<ui:define name="corpo">
+   <p:messages id="msg" showDetail="true" closable="true"/>
+      
+      <p:panel header="Cadastro de Contato">
+        
+          <h:form id="frmCad" enctype="multipart/form-data">
+            <h:panelGrid columns="2" id="cad">
+            
+               <p:outputLabel for="txtRua" value="Rua"/>
+               <p:inputText id="txtRua" value="#{contatoController.contato.rua}" required="true" requiredMessage="Rua Obrigatória"/>
+               
+               <p:outputLabel for="txtNumero" value="Nº"/>
+               <p:inputText id="txtNumero" value="#{contatoController.contato.numero}" required="true" requiredMessage="Numero Obrigatório"/>
+               
+               <p:outputLabel for="txtBairro" value="Bairro"/>
+               <p:inputText id="txtBairro" value="#{contatoController.contato.bairro}" required="true" requiredMessage="Bairro Obrigatório"/>
+               
+               <p:outputLabel for="txtCidade" value="Cidade"/>
+               <p:inputText id="txtCidade" value="#{contatoController.contato.cidade}" required="true" requiredMessage="Cidade Obrigatória"/>
+               
+               <p:outputLabel for="txtUf" value="UF"/>
+               <p:inputText id="txtUf" value="#{contatoController.contato.uf}" required="true" requiredMessage="UF Obrigatória"/>
+               
+               <p:outputLabel for="txtEmail" value="Email"/>
+               <p:inputText id="txtEmail" value="#{contatoController.contato.email}" required="true" requiredMessage="Email Obrigatório"/>
+               
+               <p:outputLabel for="txtTelefone" value="Telefone"/>
+               <p:inputText id="txtTelefone" value="#{contatoController.contato.telefone}" required="true" requiredMessage="Telefone Obrigatório"/>
+               
+          
+           </h:panelGrid>
+            <p:commandButton value="OK" actionListener="#{contatoController.salvar}" update="msg frmCad:cad"/>  
+           
+            
+           
+       
+           
+         </h:form>
+         </p:panel>
+  
+</ui:define>
+</ui:composition>
+        

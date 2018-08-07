@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/templates/layout.xhtml"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">  
+<h:head>
+    <meta charset="UTF-8"></meta>
+    <title>Cadastro de Disciplinas</title>
+</h:head>
+<ui:define name="corpo">
+   <p:messages id="msg" showDetail="true" closable="true"/>
+      
+      <p:panel header="Cadastro de Disciplinas">
+        
+          <h:form id="frmCad" enctype="multipart/form-data">
+            <h:panelGrid columns="2" id="cad">
+            
+               <p:outputLabel for="txtNome" value="Nome"/>
+               <p:inputText id="txtNome" value="#{disciplinaController.disciplina.nome}" required="true" requiredMessage="Nome Obrigatório"/>
+               
+               <p:outputLabel for="txtSemestre" value="Semestre"/>
+               <p:inputText id="txtSemestre" value="#{disciplinaController.disciplina.semestre}" required="true" requiredMessage="Semestre Obrigatório"/>
+               
+          
+           </h:panelGrid>
+            <p:commandButton value="OK" actionListener="#{disciplinaController.salvar}" update="msg frmTbl:tbl frmCad:cad"/>  
+           
+            
+           
+       
+           
+         </h:form>
+         </p:panel>
+      
+      <h:form id="frmTbl">
+      <p:dataTable id="tbl" var="d" value="#{disciplinaController.disciplinas}" paginator="true" reflow="true" rows="3"  editable="true">
+  
+     <f:facet name="header">            Lista de Disciplinas      </f:facet> 
+     
+       <p:column headerText="Codigo" sortBy="#{d.id}">         
+         <p:cellEditor>
+           <f:facet name="output">
+            <h:outputText value="#{d.id}"/>
+            </f:facet>
+           <f:facet name="input">
+            <h:inputText value="#{d.id}"/>
+            </f:facet> 
+          </p:cellEditor>
+        </p:column>
+        <p:column headerText="Nome" sortBy="#{d.nome}">
+          <p:cellEditor>
+           <f:facet name="output">
+            <h:outputText value="#{d.nome}"/>
+           </f:facet>
+           <f:facet name="input">
+            <h:inputText value="#{d.nome}"/>
+           </f:facet>
+           </p:cellEditor>
+        </p:column>
+        <p:column headerText="Semestre" sortBy="#{d.semestre}">
+          <p:cellEditor>
+           <f:facet name="output">
+            <h:outputText value="#{d.semestre}"/>
+           </f:facet>
+           <f:facet name="input">
+            <h:inputText value="#{d.semestre}"/>
+           </f:facet>
+          </p:cellEditor>
+        </p:column>
+        <p:column headerText="Opções">
+         <p:commandButton icon="ui-icon-pencil" actionListener="disciplinaController.edita" >  
+             <f:attribute name="disciplinaEdita" value="#{d}"></f:attribute>
+         </p:commandButton>      
+         
+         <p:commandButton icon="ui-icon-trash" actionListener="disciplinaController.excluir" uptade="frmCad:cad frmTab:tbl" >  
+             <p:confirm header="Confirmação" message="Excluir Disciplina?" icon="ui-icon-alert"/>
+             <f:attribute name="disciplinaExcluir" value="#{d}"></f:attribute>
+         </p:commandButton>     
+        </p:column>       
+        
+
+
+
+ 
+       
+      </p:dataTable>
+
+      </h:form>
+      <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+          <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+          <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+      </p:confirmDialog>
+   
+</ui:define>
+</ui:composition>
