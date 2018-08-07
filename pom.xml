@@ -4,7 +4,7 @@
   <artifactId>pweb</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>Pweb</name>
+  <name>Pweb git</name>
   
   <properties>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
